@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-transform,no-cache"/>
+    <link rel="icon" href="#(ctx)/favicon.png" type="image/x-icon"/>
+    <link rel="bookmark" href="#(ctx)/favicon.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="#(ctx)/favicon.png"/>
+    <script type="text/javascript">
+        //控制本页面不会在iframe中出现;
+        if (window != top)
+            top.location.href = location.href;
+    </script>
+    <script type="text/javascript">
+        var ctx = "#(ctx)";
+    </script>
+
+    <!--主要-->
+    <link href="#(ctx)/common/plugins/bootstrap/3.3.7/css/bootstrap#(devMode?'':'.min').css" rel="stylesheet"/>
+
+    <!-- 强覆盖样式 -->
+    <link href="#(ctx)/common/css/reset.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        * {
+            font-family: "Consolas", "Courier New";
+        }
+        .example-pic{
+            display: block;
+            max-width: 100%;
+            border: 1px solid rgb(221, 221, 221);
+            margin: 10px 5px;
+        }
+    </style>
+    <title>agent</title>
+</head>
+<body class="container">
+<h2>agent</h2>
+<p>调用路径：<a href="#(ctx)/q">#(ctx)/q</a> <code>Method：POST</code> <code>Content-Type: application/x-www-form-urlencoded;
+    charset=UTF-8</code></p>
+<p>请求参数：键以此种前缀开始<code>param.</code> <code>header.</code> 分别代表请求的源参数和源头部</p>
+<hr>
+<h4>params</h4>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>参数</th>
+        <th>必填</th>
+        <th>说明</th>
+    </tr>
+    <tr>
+        <td>url</td>
+        <td>是</td>
+        <td>请求访问的URL地址</td>
+    </tr>
+    <tr>
+        <td>method</td>
+        <td>否</td>
+        <td>取值:GET或POST;默认值:GET</td>
+    </tr>
+    <tr>
+        <td>paramEncoding</td>
+        <td>否</td>
+        <td>请求参数的编码,以防中文乱码.默认值:UTF-8</td>
+    </tr>
+    <tr>
+        <td>responseEncoding</td>
+        <td>否</td>
+        <td>HTTP响应正文的编码.默认值:UTF-8</td>
+    </tr>
+    <tr>
+        <td>enctype</td>
+        <td>否</td>
+        <td>当method=POST时有效;取值: #(com.zkext.agent.controller.MainController::ENCTYPE_FORM_URLENCODED) 或
+            #(com.zkext.agent.controller.MainController::ENCTYPE_RAW) ;
+            默认值=#(com.zkext.agent.controller.MainController::ENCTYPE_FORM_URLENCODED)
+        </td>
+    </tr>
+    <tr>
+        <td>#(com.zkext.agent.controller.MainController::PREFIX_PARAM)raw</td>
+        <td>否</td>
+        <td>当enctype=#(com.zkext.agent.controller.MainController::ENCTYPE_RAW)时,需要传递本参数作为POST的body</td>
+    </tr>
+    <tr>
+        <td>#(com.zkext.agent.controller.MainController::PREFIX_HEADER)Content-type</td>
+        <td>否</td>
+        <td>强烈建议传递此参数</td>
+    </tr>
+</table>
+<hr>
+<h4>Example</h4>
+
+<img class="example-pic i-layout-box" src="#(ctx)/images/example-jscode-options.png" />
+<img class="example-pic i-layout-box" src="#(ctx)/images/example-jscode-ajax.png" />
+<img class="example-pic i-layout-box" src="#(ctx)/images/example-headers.png" />
+<img class="example-pic i-layout-box" src="#(ctx)/images/example-response-preview.png" />
+
+</body>
+</html>

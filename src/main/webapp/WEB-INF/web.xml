@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+
+	<display-name>agent</display-name>
+
+<!-- 
+defaultEncoding=UTF-8一般不要改;
+enableFilterPostMethod释义:是否过滤POST请求的参数.
+enableFilterGetMethod释义:是否过滤GET请求的参数.
+如果enableFilterPostMethod和enableFilterGetMethod均为true,则此filter没有意义,还不如不使用.
+ -->
+<!--
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>com.zkext.agent.web.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>defaultEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>enableFilterPostMethod</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>enableFilterGetMethod</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+-->
+	<filter>
+		<filter-name>jfinal</filter-name>
+		<filter-class>com.jfinal.core.JFinalFilter</filter-class>
+		<init-param>
+			<param-name>configClass</param-name>
+			<param-value>com.zkext.agent.MainConfig</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>jfinal</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>
