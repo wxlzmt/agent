@@ -68,7 +68,12 @@
     <tr>
         <td>responseEncoding</td>
         <td>否</td>
-        <td>HTTP响应正文的编码.默认值:UTF-8</td>
+        <td>HTTP响应正文的编码.默认值:UTF-8; 当responseType=text时,有效.</td>
+    </tr>
+    <tr>
+        <td>responseType</td>
+        <td>否</td>
+        <td>HTTP响应的正文类型,取值:text或binary, 默认值:text; 如果取值binary,响应的二进制流将以base64编码为字符串</td>
     </tr>
     <tr>
         <td>enctype</td>
@@ -90,12 +95,51 @@
     </tr>
 </table>
 <hr>
-<h4>Example</h4>
+<h4>Example1</h4>
 
 <img class="example-pic i-layout-box" src="#(ctx)/images/example-jscode-options.png" />
 <img class="example-pic i-layout-box" src="#(ctx)/images/example-jscode-ajax.png" />
 <img class="example-pic i-layout-box" src="#(ctx)/images/example-headers.png" />
 <img class="example-pic i-layout-box" src="#(ctx)/images/example-response-preview.png" />
+
+<hr>
+
+<h4>Example2</h4>
+
+<img class="example-pic i-layout-box" src="#(ctx)/images/example2-jscode.png" />
+<img class="example-pic i-layout-box" src="#(ctx)/images/example2-headers.png" />
+<img class="example-pic i-layout-box" src="#(ctx)/images/example2-response-preview.png" />
+
+<p>
+<code>responseText</code>通过<code>src="data:image/jpeg;base64,/9j/4AAQSkZJRgAB...[略]..."</code>展示 -->
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAeAFADASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3DcPU
+fnWZqfiLStHvbCzv7rybjUJPKtk8tm3tlRjIBA5ZeuOtae4eo/OvMfiWV/4TTwFtA/5CBzx/00hq
+UrlndzeIdLtvEFtoU11t1K5jMsMPlsdyjdzuA2j7jdT2pmveJtI8MwxTaxfx2qTMVjBRnZiBk4VQ
+TgcZOMDI9RXnl/qFpqHx+0ZbOZZTbWslvNs5CSBJiVz3IDDOOhyOoNavjbwxqmoa/a694b1KKLXb
+C32G3lKnMbCTaQCCASS6/NwfUbTmuUGd1p+pWuq6dBf2E8dxazqGjkQ8EdPwOeCDyCCDVSz8R6Zq
+GrXmlW10Df2f+ut3R0YD1AYDcOnIyOR6jON4A8SR+KfDK3q2a2sqTvFPHGuEMvDsy+zb93POSevU
+814paTwl8VNJ8RxIsen6oq2V9I7YAbIG5mYEIAojYYIz5TdOSTlSHFXPRItYtJ9Xn0qKTzLy3jWW
+ZFViIw33QzYwCeoUnJHOMVjeGNVa/wBb1+D/AISD+1Ps1xs+zfYvI+xfM42bsDzOmM/7HvVT4fwT
+Xmn3nie7idL7XJvPKOCpjhXKwp2DAKMhsDIYdetYXwzyPG3j445/tEf+jJqWgWPUfrSHgg+vFIGJ
+64+oPWlJB4NKwg2juM/WsrXvDOjeJYIYdYsUuUhYtGSzIyEjBwykHB4yM4OB6CtbrTdozxj8uaQG
+FbeD/D9lqFhfWmnJFc2EPkWzpI4EafNkYBwSd7Ekgkkkk5o13wb4f8SzQz6tpwuJYVKJIHaNtuc4
+JUgkZ6A9MnHU1vY9STRtHoKq4FHT9NtNKsILCwgjgtYV2pGmeB/Mk9ST1PJqtrnh3TfElklnq9qb
+m2SQSqvmMmGAIzlSD0JrYoo5gKdpbRWFlBZ2yBLe3jWKJNxO1VGAMk88CqWl6Bpej31/eWNp5Nxq
+Enm3LiRm8x8sc4YkDlm6Y61sDkc88mjb6flT5kBGenAYexFPXjoB9RTsc5oqWwP/2Q==
+" />
+</p>
+
+<hr>
 
 </body>
 </html>

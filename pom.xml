@@ -8,9 +8,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<batik.version>1.7</batik.version>
-		<java.source.version>1.7</java.source.version>
-		<java.target.version>1.7</java.target.version>
+		<batik.version>1.8</batik.version>
+		<java.source.version>1.8</java.source.version>
+		<java.target.version>1.8</java.target.version>
 		<webinf.libdir>${basedir}/src/main/webapp/WEB-INF/lib</webinf.libdir>
 	</properties>
 

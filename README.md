@@ -3,6 +3,12 @@ In order to resolve "Ajax CORS" for JavaScript test
 
 ---
 
+# environment
+
+jdk1.8
+
+---
+
 # description
 
 本项目用于代理HTTP请求,以便解决ajax无法跨域以及敏感的HTTP Header项无法自定义的问题.

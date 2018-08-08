@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import com.jfinal.core.Controller;
 import com.zkext.agent.core.util.ConvertTools;
 import com.zkext.agent.core.util.HttpClientUtil;
-import com.zkext.agent.core.util.HttpResponseHandler;
+import com.zkext.agent.core.util.ResponseHandler;
+import com.zkext.agent.core.util.StreamResponseHandler;
+import com.zkext.agent.core.util.TextResponseHandler;
 import com.zkext.agent.dto.KVBean;
 import com.zkext.agent.dto.Report;
 import com.zkext.agent.dto.Response;
@@ -25,6 +27,10 @@ public class MainController extends Controller {
 	public static final String ENCTYPE_FORM_URLENCODED = "x-www-form-urlencoded";
 	
 	public static final String ENCTYPE_RAW = "raw";
+	
+	public static final String RESPONSE_TYPE_TEXT = "text";
+	
+	public static final String RESPONSE_TYPE_BINARY = "binary";
 
 	/**
 	 * 重定向至主页
@@ -49,6 +55,12 @@ public class MainController extends Controller {
 		}
 		String paramEncoding = getPara("paramEncoding","UTF-8");
 		String responseEncoding = getPara("responseEncoding","UTF-8");
+		String responseType = getPara("responseType",RESPONSE_TYPE_TEXT);
+		if(!RESPONSE_TYPE_TEXT.equalsIgnoreCase(responseType) && !RESPONSE_TYPE_BINARY.equalsIgnoreCase(responseType)) {
+			Response rep = new Response(false, "参数:responseType 取值只能是 "+RESPONSE_TYPE_TEXT+" 或 "+RESPONSE_TYPE_BINARY+" ; 如果不传,默认:"+RESPONSE_TYPE_TEXT);
+			renderJson(rep);
+			return;
+		}
 		List<String> paramNameList = new ArrayList<String>();
 		Enumeration<String> enumNames = getParaNames();
 		while (enumNames.hasMoreElements()) {
@@ -57,7 +69,12 @@ public class MainController extends Controller {
 		List<KVBean> params = genRequestParams(request, paramNameList);
 		Map<String, String> headers = genRequestHeaders(request, paramNameList);
 		HttpClientUtil hcUtil = new HttpClientUtil();
-		HttpResponseHandler handler = new HttpResponseHandler();
+		ResponseHandler handler = null;
+		if(RESPONSE_TYPE_BINARY.equalsIgnoreCase(responseType)) {
+			handler = new StreamResponseHandler();
+		}else {
+			handler = new TextResponseHandler();
+		}
 		Report report = handler.getReport();
 		report.setRequestURL(url);
 		report.setRequestMethod(method);
