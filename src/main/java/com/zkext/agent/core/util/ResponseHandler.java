@@ -13,8 +13,8 @@ public interface ResponseHandler {
 	 * @param response 响应
 	 * @return
 	 */
-	public boolean handle(Header[] requestHeaders,HttpResponse response);
+    boolean handle(Header[] requestHeaders, HttpResponse response);
 	
-	public Report getReport();
+	Report getReport();
 
 }

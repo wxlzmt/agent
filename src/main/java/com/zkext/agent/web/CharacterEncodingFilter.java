@@ -42,7 +42,7 @@ public class CharacterEncodingFilter implements javax.servlet.Filter {
 	}
 
 	@Override
-	public void init(FilterConfig arg) throws ServletException {
+	public void init(FilterConfig arg) {
 		String _defaultEncoding = arg.getInitParameter("defaultEncoding");
 		String _enableFilterPostMethod = arg.getInitParameter("enableFilterPostMethod");
 		String _enableFilterGetMethod = arg.getInitParameter("enableFilterGetMethod");

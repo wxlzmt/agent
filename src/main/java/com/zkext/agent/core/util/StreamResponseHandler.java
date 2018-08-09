@@ -67,7 +67,7 @@ public class StreamResponseHandler implements ResponseHandler {
 			fis.close();
 			
 			//buffer 转 base64
-			String txt = EncodeUtils.base64Encode(buffer);
+			String txt = CodingTool.base64Encode(buffer);
 			this.report.setResponseText(txt);
 
 			tempFile.delete();

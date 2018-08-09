@@ -48,15 +48,13 @@ public class KVBean implements Serializable {
 	public boolean equals(Object obj) {
 		if(obj instanceof KVBean) {
 			KVBean kv = (KVBean)obj;
-			if(StringUtils.equals(kv.getKey(), this.key) && StringUtils.equals(kv.getVal(), this.val)) {
-				return true;
-			}
+            return StringUtils.equals(kv.getKey(), this.key) && StringUtils.equals(kv.getVal(), this.val);
 		}
 		return false;
 	}
 
 	@Override
-	protected KVBean clone() throws CloneNotSupportedException {
+	protected KVBean clone() {
 		return new KVBean(this.key, this.val);
 	}
 

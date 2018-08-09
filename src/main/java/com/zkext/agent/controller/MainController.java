@@ -5,11 +5,12 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.jfinal.core.Controller;
-import com.zkext.agent.core.util.ConvertTools;
 import com.zkext.agent.core.util.HttpClientUtil;
 import com.zkext.agent.core.util.ResponseHandler;
 import com.zkext.agent.core.util.StreamResponseHandler;
@@ -42,7 +43,7 @@ public class MainController extends Controller {
 	public void q() {
 		HttpServletRequest request = getRequest();
 		String url = request.getParameter("url");
-		if (url == null || !ConvertTools.isAbsUrlPath(url)) {
+		if (url == null || !isAbsUrlPath(url)) {
 			Response rep = new Response(false, "参数:url 要求必填而且必须合法!");
 			renderJson(rep);
 			return;
@@ -139,6 +140,18 @@ public class MainController extends Controller {
 			}
 		}
 		return map;
+	}
+	
+	/**
+	 * 是否是绝对路径的url
+	 * @param path 
+	 * @return 当path的格式正确时,返回true,否则返回false
+	 */
+	private boolean isAbsUrlPath(String path) {
+		String regular = "^(http|https)://[^\\./]+\\.[^\\./]+.*$";
+		Pattern p = Pattern.compile(regular, Pattern.CASE_INSENSITIVE);
+		Matcher m = p.matcher(path);
+		return m.find();
 	}
 
 }
