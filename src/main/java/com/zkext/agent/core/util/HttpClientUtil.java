@@ -21,6 +21,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 
+import com.zkext.agent.core.handler.ResponseHandler;
 import com.zkext.agent.dto.KVBean;
 
 /**
@@ -29,7 +30,7 @@ import com.zkext.agent.dto.KVBean;
 public class HttpClientUtil {
 
 	private static Logger logger = Logger.getLogger(HttpClientUtil.class);
-
+	
 	/**
 	 * 执行 HTTP GET请求
 	 * @param url

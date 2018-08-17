@@ -1,9 +1,7 @@
-package com.zkext.agent.core.util;
+package com.zkext.agent.core.handler;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
-
-import com.zkext.agent.dto.Report;
 
 public interface ResponseHandler {
 
@@ -14,7 +12,5 @@ public interface ResponseHandler {
 	 * @return
 	 */
     boolean handle(Header[] requestHeaders, HttpResponse response);
-	
-	Report getReport();
 
 }

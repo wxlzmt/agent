@@ -11,10 +11,10 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import com.jfinal.core.Controller;
+import com.zkext.agent.core.handler.ResponseHandler;
+import com.zkext.agent.core.handler.StreamResponseHandler;
+import com.zkext.agent.core.handler.TextResponseHandler;
 import com.zkext.agent.core.util.HttpClientUtil;
-import com.zkext.agent.core.util.ResponseHandler;
-import com.zkext.agent.core.util.StreamResponseHandler;
-import com.zkext.agent.core.util.TextResponseHandler;
 import com.zkext.agent.dto.KVBean;
 import com.zkext.agent.dto.Report;
 import com.zkext.agent.dto.Response;
@@ -71,12 +71,16 @@ public class MainController extends Controller {
 		Map<String, String> headers = genRequestHeaders(request, paramNameList);
 		HttpClientUtil hcUtil = new HttpClientUtil();
 		ResponseHandler handler = null;
+		Report report = null;
 		if(RESPONSE_TYPE_BINARY.equalsIgnoreCase(responseType)) {
-			handler = new StreamResponseHandler();
+			StreamResponseHandler sHandler = new StreamResponseHandler();
+			handler = sHandler;
+			report = sHandler.getReport();
 		}else {
-			handler = new TextResponseHandler();
+			TextResponseHandler tHandler = new TextResponseHandler();
+			handler = tHandler;
+			report = tHandler.getReport();
 		}
-		Report report = handler.getReport();
 		report.setRequestURL(url);
 		report.setRequestMethod(method);
 		report.setRemoteAddress(request.getRemoteAddr());
@@ -100,7 +104,7 @@ public class MainController extends Controller {
 				return;
 			}
 		}
-		Response rep = new Response(result,handler.getReport());
+		Response rep = new Response(result,report);
 		renderJson(rep);
 	}
 

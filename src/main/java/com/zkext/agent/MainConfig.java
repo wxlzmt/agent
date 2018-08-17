@@ -11,7 +11,7 @@ import com.jfinal.template.Engine;
 import com.zkext.agent.controller.MainController;
 import com.zkext.agent.core.ext.MeJacksonFactory;
 import com.zkext.agent.core.util.Constant;
-import com.zkext.agent.handler.GlobalHandler;
+import com.zkext.agent.web.GlobalHandler;
 
 /**
  * @ClassName: MainConfig
